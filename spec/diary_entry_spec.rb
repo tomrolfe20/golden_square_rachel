@@ -44,5 +44,48 @@ describe DiaryEntry do
             expect(entry.reading_chunk(5, 1)).to eq 'hello hello hello hello hello'
         end
         
+        it 'return a string of 5 goodbyes' do
+            word = ('hello ' * 5) + ('goodbye ' * 5)
+            entry = DiaryEntry.new('Dear diary', word)
+            entry.reading_chunk(5,1)
+            expect(entry.reading_chunk(5, 1)).to eq 'goodbye goodbye goodbye goodbye goodbye'
+        end
+
+        it 'return a string of 5 ois' do
+            word = ('hello ' * 5) + ('goodbye ' * 5) + ('oi ' * 5)
+            entry = DiaryEntry.new('Dear diary', word)
+            entry.reading_chunk(5,1)
+            entry.reading_chunk(5,1)
+            expect(entry.reading_chunk(5, 1)).to eq 'oi oi oi oi oi'
+        end
+
+        it 'return a string of 3 ois' do
+            word = ('hello ' * 5) + ('goodbye ' * 5) + ('oi ' * 3)
+            entry = DiaryEntry.new('Dear diary', word)
+            entry.reading_chunk(5,1)
+            entry.reading_chunk(5,1)
+            expect(entry.reading_chunk(5, 1)).to eq 'oi oi oi'
+        end
+
+        it 'returns a string of 450 words - hello * 300 and 150 * goodbye' do
+            word = ("hello " * 300) + ("goodbye " * 300) + ("oi " * 300)
+            entry = DiaryEntry.new("Dear diary", word)
+            expect(entry.reading_chunk(300, 1.5)).to eq "hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye"
+        end
+
+        it 'returns a string of 450 goodbye * 150 and oi * 300' do
+            word = ("hello " * 300) + ("goodbye " * 300) + ("oi " * 300)
+            entry = DiaryEntry.new("Dear diary", word)
+            entry.reading_chunk(300, 1.5)
+            expect(entry.reading_chunk(300, 1.5)).to eq 'goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye goodbye oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi oi'
+        end
+
+        it 'returns a string of 450 goodbye * 150 and oi * 300' do
+            word = ("hello " * 300) + ("goodbye " * 300) + ("oi " * 300)
+            entry = DiaryEntry.new("Dear diary", word)
+            entry.reading_chunk(300, 1.5)
+            entry.reading_chunk(300, 1.5)
+            expect(entry.reading_chunk(300, 1.5)).to eq "No contents left to read"
+        end
     end
 end

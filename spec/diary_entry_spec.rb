@@ -19,4 +19,22 @@ describe DiaryEntry do
             expect(entry.count_words).to eq 5
         end
     end
+    context "Testing #reading_time method" do
+        it "returns the length of time to read contents when wpm is passed" do
+            word = "hello " * 400
+            entry = DiaryEntry.new('Dear diary', word) 
+            expect(entry.reading_time(200)).to eq 2
+        end
+
+        it "returns the length of time to read contents when non multiple of wpm is passed" do
+            word = "hello " * 300
+            entry = DiaryEntry.new("Dear diary", word)
+            expect(entry.reading_time(200)). to eq 1.5
+        end
+
+        it "returns length of time to read one word" do
+            entry = DiaryEntry.new("Dear diary", "hello")
+            expect(entry.reading_time(200)). to eq 0.005
+        end
+    end
 end

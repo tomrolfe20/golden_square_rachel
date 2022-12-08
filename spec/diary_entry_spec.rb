@@ -37,4 +37,12 @@ describe DiaryEntry do
             expect(entry.reading_time(200)). to eq 0.005
         end
     end
+    context 'Testing the #reading_chunk method' do
+        it 'return a string of 5 hellos' do
+            word = 'hello ' * 5
+            entry = DiaryEntry.new('Dear diary', word)
+            expect(entry.reading_chunk(5, 1)).to eq 'hello hello hello hello hello'
+        end
+        
+    end
 end
